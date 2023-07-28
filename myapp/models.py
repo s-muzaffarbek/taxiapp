@@ -1,15 +1,16 @@
-from django.db import models
 
 from user.models import User
+from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.IntegerField(max_length=13)
+    phone = PhoneNumberField()
     rating = models.FloatField(default=0.0)
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
 
     def fullname(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -17,10 +18,10 @@ class Driver(models.Model):
 
 class Passenger(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.IntegerField(max_length=13)
+    phone = PhoneNumberField(region='UZ')
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
 
 class Car(models.Model):
     name = models.CharField(max_length=50)
@@ -51,3 +52,5 @@ class Road(models.Model):
 
     def __str__(self):
         return self.name
+
+
