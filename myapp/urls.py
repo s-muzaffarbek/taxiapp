@@ -11,8 +11,6 @@ router.register('station', StationAPIView)
 router.register('car', CarAPIView)
 
 
-
-
 urlpatterns = [
     # path('driver/', DriverAPIView.as_view({'get': 'list'}), name='driver'),
     # path('passenger/', PassengerAPIView.as_view(), name='driver')
